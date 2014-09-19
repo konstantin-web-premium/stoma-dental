@@ -32,6 +32,9 @@ class G{
         return self::$JSON;
     }
 
+    /** LEFT sidebar INIT and FINALIZE
+     * @param string $action
+     */
     private static function sidebarLeftActivate($action = "open"){
         if($action == "open"){
             // OPEN
@@ -48,6 +51,9 @@ class G{
         }
     }
 
+    /** RIGHT sidebar INIT and FINALIZE
+     * @param string $action
+     */
     private static function sidebarRightActivate($action = "open"){
         if($action == "open"){
             // OPEN
@@ -67,6 +73,9 @@ class G{
 // -----------------------------------------------------------
 // PUBLIC ----------------------------------------------------
 // -----------------------------------------------------------
+    /**
+     * MAIN connection to DB
+     */
     public static function connect($server, $username, $password, $db_name, $convert = true){
         $connect_str = "mysql:host=" . $server . ";dbname=" . $db_name;
         self::$db = new PDO($connect_str, $username, $password);
@@ -86,7 +95,7 @@ class G{
     }
 
     /** Data types - see config.php >> RENDER DATA TYPES
-     * @param $block - see config.php >> RENDER Blocks
+     * @param $blockName - see config.php >> RENDER Blocks
      */
     public static function render($blockName){
         self::sidebarRightActivate("close");    // close sidebar div if activated
@@ -164,6 +173,9 @@ class G{
         }
     }
 
+    /** TERMINATE execution AND log message
+     * @param $message
+     */
     public static function fatalError($message){
         $ajax = (self::$ajaxData["actionId"] ? true : false);
         $err_info = G::$db->errorInfo();
@@ -193,7 +205,7 @@ class G{
         }
     }
 
-    /**
+    /** GENERATES ajax-formatted response
      * render ajax formatted data
      */
     public static function ajaxResponse($data, $errors = null){
@@ -210,10 +222,18 @@ class G{
         echo $json_str;
     }
 
+    /** JSON serialize
+     * @param $data
+     * @return mixed
+     */
     public static function serialize($data){
         return self::getJSON()->encode($data);
     }
 
+    /** FORMATS data to string for MYSQL UPDATE
+     * @param $data
+     * @return string
+     */
     public static function serializeUpdate($data){
         $arr = array();
         foreach($data as $key=>$value){
@@ -223,7 +243,7 @@ class G{
         return implode(",", $arr);
     }
 
-    /**
+    /** FORMATS data to string for MYSQL INSERT
      * @param $data = all key=>values
      * @param $tables - array( "table_name", ... )
      * @return array( table_name => serialized_data )
@@ -242,6 +262,9 @@ class G{
         return "(" . implode(",", $keys) . ") VALUES ('" . implode("','", $values). "')";
     }
 
+    /** IS local debug?
+     * @return bool
+     */
     public static function isLocal(){
         return $_SERVER["SERVER_ADDR"] == "127.0.0.1";
     }

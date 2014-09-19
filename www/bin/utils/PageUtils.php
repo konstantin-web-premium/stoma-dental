@@ -33,6 +33,10 @@ class PageUtils{
         return true;
     }
 
+    /**
+     *  Get all blocks as array with id-keys
+     * @return array
+     */
     public static function getBlocks(){
         $table_name = TABLE_PAGEBLOCKS;
 
@@ -45,6 +49,11 @@ class PageUtils{
         return $items;
     }
 
+    /** Get news
+     * @param string $type - news|promo
+     * @param int $length
+     * @return array
+     */
     public static function getNews($type = "", $length = 0){
         $table_name = TABLE_NEWS;
 
@@ -66,6 +75,9 @@ class PageUtils{
         return $items;
     }
 
+    /** Social networks data
+     * @return array
+     */
     public static function getSocials(){
         $result = array();
         $table_name = TABLE_SOCIALS;
@@ -397,7 +409,7 @@ class PageUtils{
         return $label;
     }
 
-    /**
+    /** Parses URL
      * @param $label
      * @return array - parsed address
      */
@@ -452,7 +464,7 @@ class PageUtils{
         return $result;
     }
 
-    /**
+    /** Gets settings from DB
      * @return array - settings 'key' => 'value';
      */
     public static function getSettings(){
@@ -579,6 +591,9 @@ class PageUtils{
         return $result["label"];
     }
 
+    /**
+     * Transliteration of cyrillic into URL-string
+     */
     public static function translit($text, $length = 60){
         $result = URLify::filter(iconv("windows-1251", "utf-8", $text), $length);
         return $result;

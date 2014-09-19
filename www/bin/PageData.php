@@ -821,7 +821,9 @@ class PageData{
     }
 
 
-
+    /**
+     * Redirect to previous page
+     */
     public function redirectPrev(){
         if (isset($_SESSION["prev_page"]) && $_SESSION["prev_page"]!=$_SESSION["current_page"]){
             $this->redirect($_SESSION["prev_page"]);
@@ -919,6 +921,9 @@ class PageData{
         return $lists[$type];
     }
 
+    /** getter
+     * @return array
+     */
     public function getErrors(){
         return $this->errors;
     }
