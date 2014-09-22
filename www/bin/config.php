@@ -8,20 +8,6 @@ define("SERVER", "localhost");
 define("USERNAME", "user");
 define("PASSWORD", "pass");
 define("DB_NAME", "sd_dev");
-// BETA
-/*
-define("SERVER", "db15.freehost.com.ua");
-define("USERNAME", "rabotaeu_sdbeta");
-define("PASSWORD", "gIX4D1UcY");
-define("DB_NAME", "rabotaeu_sdbeta");
-*/
-/*
-// PRODUCTION
-define("SERVER", "db15.freehost.com.ua");
-define("USERNAME", "rabotaeu_sdprod");
-define("PASSWORD", "pqHfntM2z");
-define("DB_NAME", "rabotaeu_sdprod");
-*/
 // Strings
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]);
 define("DATABASE_ERROR_MESSAGE", "Database ERROR");
