@@ -34,7 +34,7 @@ $text_schedule    = G::$language->getText("common", "schedule");
     </li><li>
         <div class="footer-menu">
             <?php
-            /*
+            
             $socials = G::$pageData->getSocials();
             if (is_array($socials) && count($socials) > 0){
                 echo $text_stayWithUs . ":<br />";
@@ -57,7 +57,7 @@ $text_schedule    = G::$language->getText("common", "schedule");
 //                <a href="#"><img src="/images/icons/rss.gif" /></a>
 //                <a href="#"><img src="/images/icons/yt.gif" /></a>
             }
-            */
+            
             ?>
         </div>
     </li><li>
