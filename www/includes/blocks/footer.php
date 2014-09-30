@@ -34,7 +34,10 @@ $text_schedule    = G::$language->getText("common", "schedule");
     </li><li>
         <div class="footer-menu">
             <?php
-            
+			
+			$pageData_socials = new PageData();
+            $socials = $pageData_socials->getSocials();
+			            
             $socials = G::$pageData->getSocials();
             if (is_array($socials) && count($socials) > 0){
                 echo $text_stayWithUs . ":<br />";
@@ -44,21 +47,13 @@ $text_schedule    = G::$language->getText("common", "schedule");
                     $icon = $item["icon"];
 
                     ?>
-                    <a href="<?php echo $url; ?>" title="<?php echo $alt; ?>" target="_blank"><img alt="<?php echo $alt; ?>" src="<?php echo "/images/icons/$icon"; ?>" /></a>
+                    <a href="<?php echo $url; ?>" title="<?php echo $alt; ?>" target="_blank"><img alt="<?php echo $alt; ?>" src="<?php echo "/images/icons/$icon"; ?>" /></a><br />
                 <?php
 
                 }
-//                <a href="#"><img src="/images/icons/fb.gif" /></a>
-//                <a href="#"><img src="/images/icons/tw.gif" /></a>
-//                <a href="#"><img src="/images/icons/ok.gif" /></a>
-//                <a href="#"><img src="/images/icons/gp.gif" /></a>
-//                <a href="#"><img src="/images/icons/li.gif" /></a>
-//                <a href="#"><img src="/images/icons/mail.gif" /></a>
-//                <a href="#"><img src="/images/icons/rss.gif" /></a>
-//                <a href="#"><img src="/images/icons/yt.gif" /></a>
-            }
-            
+			}
             ?>
+            
         </div>
     </li><li>
         <div class="text-block">
