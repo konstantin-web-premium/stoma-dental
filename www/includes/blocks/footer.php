@@ -47,7 +47,7 @@ $text_schedule    = G::$language->getText("common", "schedule");
                     $icon = $item["icon"];
 
                     ?>
-                    <a href="<?php echo $url; ?>" title="<?php echo $alt; ?>" target="_blank"><img alt="<?php echo $alt; ?>" src="<?php echo "/images/icons/$icon"; ?>" /></a><br />
+                    <a href="<?php echo $url; ?>" title="<?php echo $alt; ?>" target="_blank"><img alt="<?php echo $alt; ?>" src="<?php echo "/images/icons/$icon"; ?>" /></a>
                 <?php
 
                 }
