@@ -26,6 +26,7 @@ class PageData{
     protected $news; // = array();
     protected $promos; // = array();
     protected $blocks = array();
+    protected $brands = array();
     protected $settings = array();
     protected $menu = array();
     protected $socials = array();
@@ -72,10 +73,6 @@ class PageData{
         $this->settings = PageUtils::getSettings();
         // MENUs
         $this->menu = PageUtils::getAllMenu();
-        // Socials
-        $this->socials = PageUtils::getSocials();
-        // Brands
-        $this->brands = PageUtils::getBrands();
         // Currency
         $this->currency = PageUtils::getAllCurrency();
         // NEWS
@@ -371,7 +368,7 @@ class PageData{
         }
         $brand = $this->getBrandByLabel($brand_label);
         if ($brand){
-            $url = strlen($brand->url) ? "<a href='$brand->url'>$brand->name на сайте</a>" : "";
+            $url = strlen($brand->url) ? "<a href='$brand->url'>$brand->name пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ</a>" : "";
             G::logMessage("Brand '$brand_label' found!");
             $data = array(
                 "id" => $brand->id,
@@ -851,6 +848,9 @@ class PageData{
      * @return array( [BrandEntity] );
      */
     public function getBrands(){
+        if (!$this->brands){
+            $this->brands = PageUtils::getBrands();
+        }
         return $this->brands;
     }
 
@@ -876,6 +876,9 @@ class PageData{
     }
 
     public function getSocials(){
+        if (!$this->socials){
+            $this->socials = PageUtils::getSocials();
+        }
         return $this->socials;
     }
 

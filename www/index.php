@@ -125,5 +125,10 @@ include $_SERVER["DOCUMENT_ROOT"] . "/bin/Main.php";
         </div>
     </div>
 </div>
+<?php
+
+G::render(BLOCK_COUNTERS);
+
+?>
 </body>
 </html>
