@@ -89,6 +89,7 @@ define("BLOCK_FOOTER", "footer");
 define("BLOCK_CAROUSEL", "carousel");
 define("BLOCK_NEWS", "news");
 define("BLOCK_RECENT", "recent");
+define("BLOCK_COUNTERS", "counters");
 
 //RENDER DATA TYPES
 define("TEXT", "text_data_type");
