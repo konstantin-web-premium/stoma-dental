@@ -33,9 +33,10 @@ $text_schedule    = G::$language->getText("common", "schedule");
         </div>
     </li><li>
         <div class="footer-menu">
-           
-           <?php
-	    $socials = G::$pageData->getSocials();
+			<div class="socials">			
+			<?php
+									            
+            $socials = G::$pageData->getSocials();
             if (is_array($socials) && count($socials) > 0){
                 echo $text_stayWithUs . ":<br />";
                 foreach($socials as $item){
@@ -50,7 +51,7 @@ $text_schedule    = G::$language->getText("common", "schedule");
                 }
 			}
             ?>
-            
+			</div>
         </div>
     </li><li>
         <div class="text-block">
