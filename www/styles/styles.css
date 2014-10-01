@@ -926,6 +926,15 @@ img.news-page-title-img{
     line-height: 2em;
 }
 
+.footer-top .footer-menu .socials a{
+    display: block;
+    color: #777;
+    line-height: 2em;
+	float: left;
+	margin-left: 5px;
+	
+}
+
 .footer-top .footer-menu a:hover{
     color: #104e78;
 }
