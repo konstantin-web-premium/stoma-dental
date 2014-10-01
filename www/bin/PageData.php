@@ -661,7 +661,7 @@ class PageData{
 
         /* FINALIZE load ---------------------- */
         # content
-        if ($this->getAddress("type") != P_TYPE_CATALOGUE){
+        if ($this->getAddress("type") != P_TYPE_CATALOGUE & !empty($this->data["content"])){
 
             G::addToRender("<div class='content-white-back'>", BLOCK_CONTENT);
             G::addToRender($this->data["content"], BLOCK_CONTENT);
