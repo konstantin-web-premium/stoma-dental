@@ -6,7 +6,7 @@ $all_brands_text = G::$language->getText("common", "all_brands");
 ?>
 
 <h1><?php echo $brands_text;?></h1>
-<div class="content-white-back">
+<div class="content-white-back-sidebar-brand">
 <table class="brands-list-table">
     <tr>
     <?php
