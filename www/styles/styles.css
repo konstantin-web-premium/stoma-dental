@@ -331,6 +331,12 @@ a:hover{
     background: #fff;
     margin-bottom: 20px;
 }
+
+.content-white-back-sidebar-brand {
+    padding: 15px 50px;
+    background: #fff;
+    margin-bottom: 20px;
+}
 .content-with-columns{
     display:inline-block;
     columns: 3 auto;
