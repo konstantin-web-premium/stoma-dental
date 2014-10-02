@@ -52,6 +52,7 @@ $text_schedule    = G::$language->getText("common", "schedule");
 			}
             ?>
 			</div>
+            <p style="clear:both;">&nbsp;</p>
         </div>
     </li><li>
         <div class="text-block">
