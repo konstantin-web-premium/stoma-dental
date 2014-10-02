@@ -7,8 +7,8 @@ $all_brands_text = G::$language->getText("common", "all_brands");
 
 <h1><?php echo $brands_text;?></h1>
 <div class="content-white-back-sidebar-brand">
-<table class="brands-list-table">
-    <tr>
+<div class="brands-list-table">
+    
     <?php
 
     $total = 0;
@@ -19,10 +19,10 @@ $all_brands_text = G::$language->getText("common", "all_brands");
             }
 
             if ($total % 2 == 0){
-                echo "</tr><tr>";
+                
             }
 
-            $logo = $brand->getLogoUrl("small");
+            $logo = $brand->getLogoUrl("medium");
             if (strlen($logo)){
                 $img = "<img src='$logo' />";
             }else{
@@ -31,18 +31,18 @@ $all_brands_text = G::$language->getText("common", "all_brands");
             }
 
             ?>
-            <td>
-                <a href="/brands/<?php echo $brand->label;?>">
+            
+                <!--a href="/brands/<?php echo $brand->label;?>"-->
                     <?php echo $img; ?>
-                </a>
-            </td>
+                <!--/a-->
+            
             <?php
             $total++;
         }
     }
     ?>
     <div style="clear:both;">&nbsp;</div>
-    </tr>
-</table>
+    
+</div>
 </div>
 
