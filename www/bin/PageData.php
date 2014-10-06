@@ -461,6 +461,7 @@ class PageData{
                 // http://code.jquery.com/jquery-2.1.0.min.js
                 "jquery.js",
                 "main.js",
+                "jquery_gallery.js",
                 "jquery.checkbox.js",
                 "jquery.spoiler.js",
                 "jquery.inputhints.js"
