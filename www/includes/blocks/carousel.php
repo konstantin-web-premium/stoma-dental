@@ -2,7 +2,7 @@
 //$brands = G::$pageData->getBrands();
 $news = G::$pageData->getNewsList();
 //include config for gallery
-include_once $_SERVER["DOCUMENT_ROOT"] . "/scripts/gallery/config_gallery.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/scripts/config_gallery.php";
 ?>
 <div class="gallery-wrapper">
     <div class="wrapper-inner-container">
