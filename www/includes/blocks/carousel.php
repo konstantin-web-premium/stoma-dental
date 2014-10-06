@@ -12,6 +12,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/scripts/config_gallery.php";
 
 			    foreach($img as $key => $value){
                     echo '<a href="'. $value .'"><img src="' . $_SERVER["DOCUMENT_ROOT"] . $key . '"/>';
+			    }
 
                     ?>
                     </div>
