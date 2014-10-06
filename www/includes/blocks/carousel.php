@@ -1,10 +1,20 @@
 <?php
 //$brands = G::$pageData->getBrands();
 $news = G::$pageData->getNewsList();
+//include config for gallery
+include_once $_SERVER["DOCUMENT_ROOT"] . "/scripts/gallery/config_gallery.php";
 ?>
 <div class="gallery-wrapper">
     <div class="wrapper-inner-container">
         <div class="gallery">
+            <div class="gallery1">
+                <?php	
+			    foreach($img as $key => $value){
+			    echo '<a href="'. $value .'"><img src="' . $_SERVER["DOCUMENT_ROOT"] . $key . '"/>';	
+                ?>
+            </div>
+        
+        
             <div class="gallery-scroll-box">
                 <?php
 
