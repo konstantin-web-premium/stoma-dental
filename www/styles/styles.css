@@ -348,7 +348,19 @@ a:hover{
 .gallery{
     height: 400px;
     overflow: hidden;
-    background: url('/images/gallery/img-implay.jpg') center no-repeat;
+  /*  background: url('/images/gallery/img-implay.jpg') center no-repeat; Отключаем бекграунд, вместо него картинка с карусели*/
+}
+
+.fadein {
+position:relative;
+/*height:400px;*/
+width:1000px;
+left: 80px;
+}
+.fadein img {
+position:absolute;
+left:0;
+top:0;
 }
 
 /* CATALOG items ----------------------------------------------------*/
@@ -437,6 +449,7 @@ li.product-item {
     float: right;
     margin-top: 10px;
     overflow: hidden;
+    position: relative;
 }
 
 /*
