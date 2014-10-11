@@ -7,15 +7,22 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/scripts/config_gallery.php";
 <div class="gallery-wrapper">
     <div class="wrapper-inner-container">
         <div class="gallery">
-            <div class="gallery1">
-                <?php
-
-			    foreach($img as $key => $value){
-                    echo '<a href="'. $value .'"><img src="' . $_SERVER["DOCUMENT_ROOT"] . $key . '"/>';
-			    }
-
-                    ?>
-                    </div>
+            
+                <div id="photos">
+				
+		<?php
+			$i = 1;
+			foreach($img as $key => $value){
+				If($i==1){
+					echo '<a href="'.$value.'" class="show"><img src="' . $key . '"/></a>';
+				}else{
+					echo '<a href="'.$value.'"><img src="' . $key . '"/></a>';
+				}
+				$i++;
+			}
+		?>
+		
+	        </div>
 
                     <div class="gallery-scroll-box">
                     <?php
