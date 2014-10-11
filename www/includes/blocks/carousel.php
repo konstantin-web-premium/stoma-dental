@@ -2,7 +2,7 @@
 //$brands = G::$pageData->getBrands();
 $news = G::$pageData->getNewsList();
 //include config for gallery
-include_once $_SERVER["DOCUMENT_ROOT"] . "/scripts/config_gallery.php";
+include_once (ROOT . "/scripts/config_gallery.php");
 ?>
 <div class="gallery-wrapper">
     <div class="wrapper-inner-container">
@@ -11,13 +11,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/scripts/config_gallery.php";
                 <div id="photos">
 				
 		<?php
-			$i = 1;
+			$i = 0;
 			foreach($img as $key => $value){
-				If($i==1){
-					echo '<a href="'.$value.'" class="show"><img src="' . $key . '"/></a>';
-				}else{
-					echo '<a href="'.$value.'"><img src="' . $key . '"/></a>';
-				}
+                echo '<a href="'.$value.'" ' . ($i==0 ? 'class="show"' : '') . '><img src="' . $key . '"/></a>';
 				$i++;
 			}
 		?>
@@ -50,7 +46,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/scripts/config_gallery.php";
                     <?php
 
                     }
-                }
 
                 /*
                 foreach($brands as $brand){
