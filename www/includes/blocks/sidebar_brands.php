@@ -24,7 +24,7 @@ $all_brands_text = G::$language->getText("common", "all_brands");
 
             $logo = $brand->getLogoUrl("medium");
             if (strlen($logo)){
-                $img = "<img src='$logo' />";
+                $img = "<img src='$logo' width='60' />";
             }else{
 
                 $img = $brand->name;
@@ -33,7 +33,7 @@ $all_brands_text = G::$language->getText("common", "all_brands");
             ?>
             
                 <!--a href="/brands/<?php echo $brand->label;?>"-->
-                    <?php echo $img; ?>
+                    <?php echo $img; ?><br />
                 <!--/a-->
             
             <?php

@@ -112,7 +112,11 @@ class PageData{
                 break;
             case P_TYPE_NEWS:
                 $this->data = $this->getNewsItem($this->address["page"]);
-                G::addToRender("<h1 class='news-title'>" . $this->data["short"] . "</h1>", BLOCK_CONTENT);
+                if (strlen($this->data["short"]) > 70){
+                    G::addToRender("<h2 class='news-title'>" . $this->data["short"] . "</h2>", BLOCK_CONTENT);
+                }else{
+                    G::addToRender("<h1 class='news-title'>" . $this->data["short"] . "</h1>", BLOCK_CONTENT);
+                }
                 G::addToRender("<div class='news-date'>" . $this->data["date"] . "</div>", BLOCK_CONTENT);
                 // DEBUG
 

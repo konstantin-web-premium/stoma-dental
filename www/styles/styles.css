@@ -70,7 +70,7 @@ a:hover{
 
 .wrapper-inner-container {
     max-width: 1500px;
-    min-width: 965px;
+    min-width: 1000px;
     margin: 0 auto;
     padding: 0 30px;
     height: auto;
@@ -257,6 +257,8 @@ a:hover{
     padding-bottom: 130px;
 }
 
+.sidebar-right h2,
+.body h2,
 .sidebar-right h1,
 .body h1{
     padding: 0;
@@ -348,18 +350,12 @@ a:hover{
 .gallery{
     height: 400px;
     overflow: hidden;
-  /*  background: url('/images/gallery/img-implay.jpg') center no-repeat; Отключаем бекграунд, вместо него картинка с карусели*/
 }
 
 /* Carousel */
-#photos a {
-  position: absolute;
-}
- 
-#photos {
-  width: 180px;
-  height: 200px;
-  overflow: hidden;
+#photos{
+    width: 100px;
+    height: 100px;
 }
 
 /* CATALOG items ----------------------------------------------------*/
@@ -446,9 +442,10 @@ li.product-item {
     width: 270px;
     height: 380px;
     float: right;
-    margin-top: -190px;
     overflow: hidden;
     position: relative;
+    z-index: 1;
+    margin-top: 10px;
 }
 
 /*
@@ -467,6 +464,7 @@ li.product-item {
     margin:0;
     border-collapse: collapse;
     background: #fff;
+    line-height: 2em;
 }
 
 .brands-list-table{
@@ -856,8 +854,14 @@ table.options-table td{
     text-align: justify;
 }
 
-h1.news-title{
+h1.news-title,
+h2.news-title{
     margin: 0px;
+}
+
+h2.news-title{
+    font-size: 12pt;
+    padding-bottom:7px;
 }
 
 .news-date{

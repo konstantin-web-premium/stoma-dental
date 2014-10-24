@@ -8,23 +8,11 @@ include_once (ROOT . "/scripts/config_gallery.php");
     <div class="wrapper-inner-container">
         <div class="gallery">
             
-                <div id="photos">
-				
-		<?php
-			$i = 0;
-			foreach($img as $key => $value){
-                echo '<a href="'.$value.'" ' . ($i==0 ? 'class="show"' : '') . '><img src="' . $key . '"/></a>';
-				$i++;
-			}
-		?>
-		
-	        </div>
-
                     <div class="gallery-scroll-box">
                     <?php
 
                     $i = 0;
-                    while(($item = array_shift($news)) && ($i <= 3)){
+                    while(($item = array_shift($news)) && ($i < 3)){
                         if ($item["type"] != NEWS_TYPE_NEWS){
                             continue;
                         }
@@ -47,13 +35,17 @@ include_once (ROOT . "/scripts/config_gallery.php");
 
                     }
 
-                /*
-                foreach($brands as $brand){
-                    echo "<tr><td>" .
-                    "<a href=\"#\">$brand->name</a></td><td><img src=\"" . $brand->getLogoUrl("small") . "\" class=\"logo\" alt=\"$brand->name\" />" .
-                    "</td></tr>\n";
+                ?>
+            </div>
+
+            <div id="photos">
+                <?php
+
+                $i = 0;
+                foreach($img as $key => $value){
+                    echo '<a href="' . $value . '" ' . ($i==0 ? 'class="show"' : '') . '><img src="' . $key . '"/></a>';
+                    $i++;
                 }
-                */
 
                 ?>
             </div>

@@ -20,7 +20,9 @@ if (count($items)){
 
         ?>
         <div class="news-item">
-            <a href="/news/<?php echo $item["label"]?>"><img src="<?php echo $img_url; ?>" alt="<?php echo $item["short"]; ?>" /></a>
+            <a href="/news/<?php echo $item["label"]?>">
+                <img src="<?php echo $img_url; ?>" alt="<?php echo $item["short"]; ?>" />
+            </a>
             <div class="text-block">
                 <a href="/news/<?php echo $item["label"]?>"><?php echo $item["short"];?></a>
             </div>
