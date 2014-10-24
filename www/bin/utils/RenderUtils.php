@@ -142,7 +142,7 @@ class RenderUtils{
         $str = "<tr>" .
             "<td>$i</td>" .
             "<td><a href='$path/$file' target='_blank'><img src='$path/$file' alt='' class='admin_preview_mini' /></a></td>" .
-            "<td>$file_name<br />($img_width x $img_height)</td>" .
+            "<td name='$file_name'>$file_name<br />($img_width x $img_height)</td>" .
             "<td>$file_type</td>" .
             "<td>" . $text . "</td>" .
             "<td>" . (strlen($text) ? "<span class='grey-small-text'>$message</span>" : $button_str) . "</td>" .

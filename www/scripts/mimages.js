@@ -143,7 +143,7 @@ function onButtonDeleteClick(event){
     var $form = $("#copy_image_form");
     var $tr = $(event.target).closest("tr");
     currentTR = $tr;
-    var img_filename = $tr.children('td:eq(2)').text();
+    var img_filename = $tr.children('td:eq(2)').attr("name");
     var data = {
         img_filename : img_filename,
         image_type : $form.find("input[name='image_type']").val()

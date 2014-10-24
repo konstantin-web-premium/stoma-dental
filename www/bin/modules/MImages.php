@@ -59,7 +59,7 @@ class MImages extends MAdmin implements iAdminModule{
      * implements interface iAdminModule
      */
     public function init($address){
-        $this->action = $address["action"];
+        $this->action = (strlen($address["action"]) ? $address["action"] : "pages");
         G::$pageData->imagesType = $this->action;
         $this->data["content"] = "";
     }

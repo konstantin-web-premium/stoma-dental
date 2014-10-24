@@ -78,7 +78,7 @@ class ProductItem{
         }
         $converter = G::$pageData->currencyConverter;
         $result = $converter->convert($this->price, $this->currency_id, $request_mark);
-        return $result;
+        return round($result, 2);
     }
 
     public function getImageUrl($size){
