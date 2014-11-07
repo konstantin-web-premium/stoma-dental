@@ -49,8 +49,6 @@ class ProductItem{
         $this->price = floatval($data["price"]);
         $this->currency_id = (intval($data["currency_id"]) > 0 ? intval($data["currency_id"]) : 1);
 
-        $this->price = floatval($data["price"]);
-
         $this->props = $this->unserializeProps($data["props"]);
     }
 
@@ -69,16 +67,32 @@ class ProductItem{
         }
         return $properties;
     }
+
+    private function formatPrice($value){
+        $str = $value . "";
+        $result = "";
+        $point_chr = strpos($str, ".");
+        if ($point_chr > -1){
+            $result = substr($str, $point_chr);
+            $str = substr($str, 0, $point_chr);
+        }
+        $len = strlen($str);
+        for($i = 1; $i <= $len; $i++){
+            $result = substr($str, -$i, 1) . (($i-1) % 3 == 0 && $i > 1 ? " " : "") . $result;
+        }
+        return $result;
+    }
 // -----------------------------------------------------------
 // PUBLIC ----------------------------------------------------
 // -----------------------------------------------------------
-    public function getPrice($request_mark){
+    public function getPrice($request_mark, $format = false){
         if ($this->price == 0.0){
-            return 0.0;
+            return ($format ? "0" : 0.0);
         }
+        $roundPoint = $this->price > 100 ? 0 : 2;
         $converter = G::$pageData->currencyConverter;
         $result = $converter->convert($this->price, $this->currency_id, $request_mark);
-        return round($result, 2);
+        return ($format ? $this->formatPrice(round($result, $roundPoint)) : round($result, $roundPoint));
     }
 
     public function getImageUrl($size){

@@ -280,7 +280,7 @@ a:hover{
     vertical-align: top;
     clear:both;
     text-align: justify;
-    font-size: 11pt;
+    font-size: 10pt;
 }
 
 .catalogue-top-content{
@@ -294,13 +294,18 @@ a:hover{
 .content-block li,
 .content-block p,
 .catalogue-top-content p{
-    line-height: 1.5em;
+    line-height: 1.3em;
+}
+
+ul.content-ul li{
+    line-height: 1em;
 }
 
 .content-block a,
 .catalogue-top-content a{
     color: #104e78;
     text-decoration: underline;
+    font-weight: bold;
     line-height: 1.5em;
 }
 
@@ -344,6 +349,16 @@ a:hover{
     columns: 3 auto;
     -moz-columns: 3 auto;
     -webkit-columns: 3 auto;
+}
+
+.content-floated-right{
+    float: right;
+    margin: 0 0 10px 20px;
+}
+
+.content-floated-left{
+    float: left;
+    margin: 0 20px 10px 0;
 }
 
 /* GALLERY (carousel)  -------------------------------------------- */
@@ -502,10 +517,16 @@ li.product-item {
     white-space: normal;
     font-family: Tahoma,Helvetica;
     white-space: normal;
+    font-weight: normal;
+    text-decoration: none;
 }
 
 .product-item a:hover{
-    color: #999;
+    color: #777;
+}
+
+.product-item:hover{
+    border: 1px solid #104e78;
 }
 
 .product-item .country{ /*span*/
@@ -522,7 +543,7 @@ li.product-item {
     clear: both;
     white-space: normal;
     font-family: Arial, Helvetica, sans-serif;
-    color: #999;
+    color: #777;
 }
 
 .product-item img{
@@ -637,7 +658,7 @@ table.options-table td{
 }
 
 .price-block .price-foreign{
-    color: #999;
+    color: #777;
     font-family: Arial, Helvetica, sans-serif;
     font-size: small;
 }
@@ -851,7 +872,7 @@ table.options-table td{
     background: url('/images/opacity-blue.png');
     color: #fff;
     font-size: small;
-    text-align: justify;
+    text-align: left;
 }
 
 h1.news-title,

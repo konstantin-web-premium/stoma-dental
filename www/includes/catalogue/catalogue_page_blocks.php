@@ -30,8 +30,10 @@ if ($products){
         $title = $product->title;
         $content = $product->content;
         $description = $product->description;
-        $price_uah = $product->getPrice("UAH");
-        $price_usd = $product->getPrice("USD");
+        $price_uah = intval($product->getPrice("UAH"));
+        $price_uah_formatted = $product->getPrice("UAH", true);
+        $price_usd = intval($product->getPrice("USD"));
+        $price_usd_formatted = $product->getPrice("USD", true);
         $props = $product->getProps();
 
         //SPIKE
@@ -74,9 +76,9 @@ if ($products){
 
                         ?>
                         <div class="price-block">
-                            <span class="price-native"><?php echo $price_uah?>&nbsp;UAH</span>
+                            <span class="price-native"><?php echo $price_uah_formatted;?>&nbsp;UAH</span>
                             <br />
-                            <span class="price-foreign"><?php echo $price_usd?>&nbsp;$</span>
+                            <span class="price-foreign"><?php echo $price_usd_formatted;?>&nbsp;$</span>
                         </div>
                         <?php
 
