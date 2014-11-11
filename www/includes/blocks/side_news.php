@@ -6,6 +6,8 @@ $news = G::$pageData->getNewsList();
 <h1><?php echo $text_news;?></h1>
 <?php
 
+$total = 0;
+$max_total = 5;
 foreach($news as $item){
     if ($item["type"] != NEWS_TYPE_NEWS){
         continue;
@@ -24,7 +26,10 @@ foreach($news as $item){
         </div>
     </div>
     <?php
-
+    $total++;
+    if ($total >= $max_total){
+        break;
+    }
 }
 
 ?>

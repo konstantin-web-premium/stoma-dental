@@ -454,8 +454,8 @@ class PageUtils{
                 $result["path"] = $addr;
                 $result["address"] = $result["full_addres"] = "/".implode("/", $addr);
                 break;
-            case P_TYPE_ARTICLES:
-            # sample: /articles/sdgprh_sdgw_wedddf
+            case P_TYPE_ARTICLE:
+            # sample: /article/sdgprh-sdgw_wedddf
                 $result["page"] = array_shift($addr); // 1
                 $result["address"] = $result["full_address"] = "/$result[type]/$result[page]";
                 break;
@@ -501,7 +501,8 @@ class PageUtils{
             "$t_countries.short_name AS country_short_name,".
             "$t_countries.full_name AS country_full_name ".
             "FROM $t_brands " .
-            "LEFT JOIN $t_countries ON $t_brands.country_code = $t_countries.unicode";
+            "LEFT JOIN $t_countries ON $t_brands.country_code = $t_countries.unicode " .
+            "ORDER BY $t_brands.order DESC";
 
         $query = G::$db->query($query_str) or G::fatalError("PageUtils::getBrands() -> ".DATABASE_ERROR_MESSAGE);
         while($row = $query->fetch()){

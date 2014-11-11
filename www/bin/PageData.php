@@ -2,6 +2,7 @@
 include_once "AdminModulesManager.php";
 include_once "utils/PageUtils.php";
 include_once "utils/CatalogueUtils.php";
+include_once "utils/ArticleUtils.php";
 include_once "utils/AdminUtils.php";
 include_once "utils/RenderUtils.php";
 include_once "catalogue/CurrencyConverter.php";
@@ -103,7 +104,6 @@ class PageData{
         }
 
         unset($this->data);
-        G::logMessage(">>" . $this->address["type"] . " -- " . $this->address["full_address"]);
         switch($this->address["type"]){
             default:
             case P_TYPE_PAGE:
@@ -129,7 +129,7 @@ class PageData{
                 $this->data = $this->getBrandItem($this->address["page"]);
                 G::addToRender("<h1 class='news-title'>" . $this->data["brand_full_name"] . "</h1>", BLOCK_CONTENT);
                 G::addToRender("<div class='news-date'>" . $this->data["country_name"] . "</div>", BLOCK_CONTENT);
-                G::addToRender("<img class='news-page-title-img' src='" . $this->data["logo_medium_url"] . "' />", BLOCK_CONTENT);
+                G::addToRender("<img class='news-page-title-img' src='" . $this->data["logo_large_url"] . "' />", BLOCK_CONTENT);
                 // DEBUG
 
                 $this->data["access"] = 4;
@@ -153,7 +153,14 @@ class PageData{
                 $this->propsManager = new PropsManager();
                 $this->data = $this->getCatalogueItem($this->address["path"]);
                 break;
-            case P_TYPE_ARTICLES:
+            case P_TYPE_ARTICLE:
+                $this->data = $this->getArticleItem($this->address["page"]);
+                // DEBUG
+
+                $this->data["access"] = 4;
+                $this->data["blocks_id"] = "1,3,4,5,6,7,8,9,10,11,12,15";
+
+                //
                 break;
         }
 
@@ -163,6 +170,7 @@ class PageData{
     }
 
     private function initAddonBlocks(){
+        G::addToRender("blocks/brand_line.php", BLOCK_PRE_CONTENT, CODE);
         // PROMO
         if ($this->isVisibleBlock(BLOCK_PROMO)){
             G::addToRender("blocks/side_promo.php", BLOCK_SIDEBAR_RIGHT, CODE);
@@ -180,8 +188,6 @@ class PageData{
                G::addToRender("blocks/side_news.php", BLOCK_SIDEBAR_RIGHT, CODE);
             }
         }
-        // NEWS  on the LEFT sidebar
-        G::addToRender("blocks/sidebar_brands.php", BLOCK_SIDEBAR_LEFT, CODE);
 
     }
 
@@ -191,6 +197,10 @@ class PageData{
         }
     }
 
+    /** get Catalogue Item
+     * @param $path
+     * @return array
+     */
     private function getCatalogueItem($path){
         $data = array();
         $path_items = CatalogueUtils::getPathItems($path);
@@ -305,9 +315,11 @@ class PageData{
                 $data = $this->getPageItem();
                 $addon_data = $this->getCatalogueItem(array("catalogue"));
                     $data["current_categories"] = $addon_data["current_categories"];
-                    //$data["content"]            = $addon_data["content"];
+                    $data["content"]            = $addon_data["content"];
                     $data["catalogue"]          = $addon_data["catalogue"];
                     $data["products"]           = $addon_data["products"];
+                $addon_data = $this->getArticleItem("", 5);
+                    $data["articles"]           = $addon_data["articles"];
                 break;
             case PAGE_LOGOUT:
                 G::$user->logout();
@@ -366,14 +378,38 @@ class PageData{
         return $data;
     }
 
+    private function getArticleItem($article_label, $max_list = 0){
+        if (empty($article_label)){
+            $data["title"] = G::$language->getText("common", "articles_list");
+            $articlesList = ArticleUtils::getArticles($max_list);
+        }else{
+            $articleNode = ArticleUtils::getArticleNode($article_label);
+            $data = $this->parsePageData($articleNode);
+            $text_date = G::$language->getText("common", "add_date");
+            $text_author = G::$language->getText("common", "author_text");
+            $data["content"] =
+                "<div class='content-date'>" . $text_date . ": " . date("d.m.Y", $data["created_time"] ) . "</div>" .
+                "<div class='content-author'>$text_author: $data[name] $data[lastname]<br />$data[degree]</div>" .
+                "<div style='clear:both;'>&nbsp;</div>" .
+                $data["content"].
+                "<br /><div class='grey-text' style='text-align:center; font-family:Arial;'> Для возврата <a href='#'>НАВЕРХ</a> нажмите Ctrl+Home</div><br />";
+        }
+
+        G::addToRender("<h1>" . $data["title"] . "</h1>", BLOCK_CONTENT);
+        G::addToRender("articles/articles_list.php", BLOCK_CONTENT, CODE);
+
+        $data["articles"] = $articlesList;
+
+        return $data;
+    }
+
     private function getBrandItem($brand_label = ""){
         if ($brand_label == ""){
             $brand_label = $this->address["page"];
         }
         $brand = $this->getBrandByLabel($brand_label);
         if ($brand){
-            $url = strlen($brand->url) ? "<a href='$brand->url'>$brand->name пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ</a>" : "";
-            G::logMessage("Brand '$brand_label' found!");
+            $url = strlen($brand->url) ? "<a href='$brand->url'>$brand->name на сайте</a>" : "";
             $data = array(
                 "id" => $brand->id,
                 "label" => $brand->label,
@@ -434,7 +470,7 @@ class PageData{
      * @return BrandEntity | null
      */
     private function getBrandByLabel($label){
-        if (count($this->brands)){
+        if (count($this->getBrands())){
             foreach($this->brands as $item){
                 if ($label == $item->label){
                     return $item;
@@ -520,7 +556,7 @@ class PageData{
                 $t_data = TABLE_CATALOGUE;
                 $requiredFields = array("label", "title");
                 break;
-            case P_TYPE_ARTICLES:
+            case P_TYPE_ARTICLE:
                 $t_data = TABLE_ARTICLES;
                 $requiredFields = array("label", "title");
                 break;
@@ -666,9 +702,12 @@ class PageData{
 
         /* FINALIZE load ---------------------- */
         # content
-        if ($this->getAddress("type") != P_TYPE_CATALOGUE & !empty($this->data["content"])){
-
-            G::addToRender("<div class='content-white-back'>", BLOCK_CONTENT);
+        if ($this->getAddress("type") != P_TYPE_CATALOGUE && !empty($this->data["content"])){
+            $class = "content-white-back";
+            if ($this->getAddress("type") == P_TYPE_ARTICLE){
+                $class = "content-white-back-article";
+            }
+            G::addToRender("<div class='$class'>", BLOCK_CONTENT);
             G::addToRender($this->data["content"], BLOCK_CONTENT);
             G::addToRender("</div>", BLOCK_CONTENT);
         }
@@ -734,7 +773,7 @@ class PageData{
         //
 
         // images
-        G::logMessage("IMAGES: " . "small=" . $data["img_small"] . "&medium=" . $data["img_medium"] . "&large=" . $data["img_large"]);
+        //G::logMessage("IMAGES: " . "small=" . $data["img_small"] . "&medium=" . $data["img_medium"] . "&large=" . $data["img_large"]);
         $data["image"] = "small=" . $data["img_small"] . "&medium=" . $data["img_medium"] . "&large=" . $data["img_large"];
         unset($data["img_small"],$data["img_medium"],$data["img_large"]);
         //

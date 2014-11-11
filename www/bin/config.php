@@ -112,6 +112,7 @@ define("TABLE_LOCALIZATION", "localization");
 define("TABLE_LANGUAGE", "language");
 define("TABLE_SETTINGS", "site_settings");
 define("TABLE_PAGES", "pages");
+define("TABLE_ARTICLES", "articles");
 define("TABLE_META", "meta_pages");
 define("TABLE_MENU", "menu_list");
 define("TABLE_MENU_ITEMS", "menu_items");

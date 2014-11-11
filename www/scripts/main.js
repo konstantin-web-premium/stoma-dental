@@ -288,7 +288,7 @@ $(document).ready(function(){
         window.location.href = "/";
     }).css({cursor: "pointer"});
     // dynamic a href - catalogue
-    $(".category-item,.product-item,.navigation li").click(function(){
+    $(".category-item,.product-item,.navigation li,.article-list-item").click(function(){
         window.location.href = $(this).find("a").attr("href");
     }).css({cursor: "pointer"});
     //
