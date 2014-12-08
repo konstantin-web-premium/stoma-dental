@@ -78,11 +78,11 @@ class G{
      */
     public static function connect($server, $username, $password, $db_name, $convert = true){
         $connect_str = "mysql:host=" . $server . ";dbname=" . $db_name;
-        self::$db = new PDO($connect_str, $username, $password);
+        self::$db = new PDO($connect_str, $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
 
-        if ($convert){
-            self::$db->exec('SET NAMES cp1251');
-        }
+        //if ($convert){
+			//self::$db->exec('SET NAMES UTF-8');
+        //}
     }
 
     /** Log in file on server
